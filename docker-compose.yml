@@ -1,0 +1,40 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      NODE_ENV: production
+      PORT: "3001"
+      FRONTEND_URL: "http://localhost:5173"
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+      TELEGRAM_WEBHOOK_URL: ${TELEGRAM_WEBHOOK_URL}
+      UPLOAD_DIR: /app/uploads
+      GENERATED_DIR: /app/generated
+      MAX_FILE_SIZE_MB: "10"
+      FILE_CLEANUP_HOURS: "1"
+      RATE_LIMIT_WINDOW_MS: "900000"
+      RATE_LIMIT_MAX_REQUESTS: "10"
+    volumes:
+      - ats_generated:/app/generated
+      - ats_uploads:/app/uploads
+    ports:
+      - "3001:3001"
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - backend
+    ports:
+      - "5173:80"
+    volumes:
+      # Shared volume for generated artifacts (useful for debugging and persistence).
+      - ats_generated:/app/generated
+
+volumes:
+  ats_generated:
+  ats_uploads:
+

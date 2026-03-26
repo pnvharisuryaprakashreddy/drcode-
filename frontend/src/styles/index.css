@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background: #0D0D0D;
+  color: #F5F0E8;
+  font-family: "Literata", serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Editorial Dark Brutalism: sharp, purposeful animations only */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: slideInUp 0.6s ease forwards;
+  animation-delay: var(--d, 0s);
+}
+
+@keyframes terminalLineIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+    filter: blur(0.6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.terminalLine {
+  opacity: 0;
+  animation: terminalLineIn 0.35s ease forwards;
+  animation-delay: var(--d, 0s);
+}
+
+@property --w {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+@keyframes fillBar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--w);
+  }
+}
+
+.barFill {
+  width: 0%;
+  background: #F5A623;
+  animation: fillBar 0.95s ease forwards;
+  animation-delay: var(--d, 0s);
+}
+
+.no-round {
+  border-radius: 0;
+}
+

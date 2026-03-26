@@ -1,0 +1,22 @@
+.DS_Store
+.env
+.env.local
+.env.*.local
+
+# Node
+**/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Builds
+**/dist/
+**/.vite/
+
+# Runtime artifacts
+uploads/
+generated/
+backend/uploads/
+backend/generated/
+
