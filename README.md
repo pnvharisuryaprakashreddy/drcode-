@@ -100,4 +100,3 @@ docker compose up -d --build
 ## Production notes
 - Puppeteer template rendering uses headless Chromium (included via Alpine packages).
 - Uploaded files and generated artifacts are automatically cleaned up after the configured cleanup window.
-
